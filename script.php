@@ -17,50 +17,56 @@ if (empty($nome)){
     return;
 }
 
-if (strlen($nome) < 3){
+else if (strlen($nome) < 3){
     $_SESSION['mensagem-de-erro'] = 'O nome deve conter mais de 3 caracteres!';
     header('location: index.php');
     return;
 }
 
-if (strlen($nome) > 20){
+else if (strlen($nome) > 20){
     $_SESSION['mensagem-de-erro'] = 'O nome é muito extenso!';
     header('location: index.php');
     return;
 }
 
 // Validações do idade
-if (empty($idade)){
+else if (empty($idade)){
     $_SESSION['mensagem-de-erro'] = 'A idade não pode estar vazia!';
     header('location: index.php');
     return;
 }
 
-if (!is_numeric($idade)){
+else if (!is_numeric($idade)){
     $_SESSION['mensagem-de-erro'] = 'Informe um número para idade!';
     header('location: index.php');
     return;
 }
 
 // Validações da Categoria
-if ($idade >= 6 && $idade <= 12){
+else if ($idade >= 6 && $idade <= 12){
     for ($i = 0; $i < count($categorias); $i++){
         if ($categorias[$i] == "Infantil"){
-            echo "O nadador ".$nome. " compete na categoria ". $categorias[$i];
+            $_SESSION['mensagem-de-sucesso'] = "O nadador ".$nome. " compete na categoria ". $categorias[$i];
+            header('location: index.php');
+            return;
         }
     }
 }
 else if ($idade >= 13 && $idade <= 18){
     for ($i = 0; $i < count($categorias); $i++){
         if ($categorias[$i] == "Adolescente"){
-            echo "O nadador ".$nome. " compete na categoria ". $categorias[$i];
+            $_SESSION['mensagem-de-sucesso'] = "O nadador ".$nome. " compete na categoria ". $categorias[$i];
+            header('location: index.php');
+            return;
         }
     }
 }
 else if ($idade > 18){
     for ($i = 0; $i < count($categorias); $i++){
         if ($categorias[$i] == "Adulto"){
-            echo "O nadador ".$nome. " compete na categoria ". $categorias[$i];
+            $_SESSION['mensagem-de-sucesso'] = "O nadador ".$nome. " compete na categoria ". $categorias[$i];
+            header('location: index.php');
+            return;
         }
     }
 }

@@ -19,6 +19,11 @@
 
 <form action="script.php" method="post">
     <?php
+         $MensagemDeSucesso = isset($_SESSION['mensagem-de-sucesso']) ? $_SESSION['mensagem-de-sucesso'] : '';
+         if(!empty($MensagemDeSucesso)){
+             echo $MensagemDeSucesso;
+             session_destroy();
+         }
         $MensagemDeErro = isset($_SESSION['mensagem-de-erro']) ? $_SESSION['mensagem-de-erro'] : '';
          // Se estiver valor iniciado na Session, atribui valor a variável
          if(!empty($MensagemDeErro)){
