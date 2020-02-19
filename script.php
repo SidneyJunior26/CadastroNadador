@@ -1,5 +1,5 @@
 <?php
-
+/** Criado por Sidney Jr. */
 session_start();
 
 $categorias = [];
