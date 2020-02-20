@@ -1,5 +1,5 @@
 <?php
-    session_start();    
+include "Serviços/servicoMensagemSessao.php";
 ?>
 
 <!DOCTYPE html>
@@ -17,24 +17,22 @@
 
     <p>FORMULÁRIO DE INCRIÇÃO PARA COMPETIDORES</p>
 
-<form action="script.php" method="post">
-    <?php
-         $MensagemDeSucesso = isset($_SESSION['mensagem-de-sucesso']) ? $_SESSION['mensagem-de-sucesso'] : '';
-         if(!empty($MensagemDeSucesso)){
-             echo $MensagemDeSucesso;
-             session_destroy();
-         }
-        $MensagemDeErro = isset($_SESSION['mensagem-de-erro']) ? $_SESSION['mensagem-de-erro'] : '';
-         // Se estiver valor iniciado na Session, atribui valor a variável
-         if(!empty($MensagemDeErro)){
-             echo $MensagemDeErro;
-            session_destroy();
-         }
-    ?>
-    <p>Seu nome: <input type="text" name="nome" /></p>
-    <p>Sua idade: <input type="text" name="idade" /></p>
-    <p><input type="submit" value="Enviar dados do competidor"/></p>
-</form>
+    <form action="script.php" method="post">
+        <?php
+        $MensagemDeSucesso = obterMensagemSucesso();
+        if (!empty($MensagemDeSucesso)) {
+            echo $MensagemDeSucesso;
+        }
+        $MensagemDeErro = obterMensagemErro();
+        // Se estiver valor iniciado na Session, atribui valor a variável
+        if (!empty($MensagemDeErro)) {
+            echo $MensagemDeErro;
+        }
+        ?>
+        <p>Seu nome: <input type="text" name="nome" /></p>
+        <p>Sua idade: <input type="text" name="idade" /></p>
+        <p><input type="submit" value="Enviar dados do competidor" /></p>
+    </form>
 </body>
 
 </html>
